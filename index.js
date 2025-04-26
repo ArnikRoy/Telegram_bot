@@ -55,11 +55,11 @@ axios.get('https://api.themoviedb.org/3/genre/movie/list', {
 
 // Mood to genre mapping
 const moodGenreMap = {
-    'happy': { genres: [35], message: 'comedy' }, // Comedy
+    'funny': { genres: [35], message: 'comedy' }, // Comedy
     'sad': { genres: [18, 10749], message: 'drama and romance' }, // Drama, Romance
-    'excited': { genres: [28, 12], message: 'action and adventure' }, // Action, Adventure
-    'scared': { genres: [27, 53], message: 'horror and thriller' }, // Horror, Thriller
-    'relaxed': { genres: [16, 14], message: 'animation and fantasy' }, // Animation, Fantasy
+    'action': { genres: [28, 12], message: 'action and adventure' }, // Action, Adventure
+    'horror': { genres: [27, 53], message: 'horror and thriller' }, // Horror, Thriller
+    'cartoon': { genres: [16, 14], message: 'animation and fantasy' }, // Animation, Fantasy
     'romantic': { genres: [10749], message: 'romance' } // Pure Romance
 };
 
@@ -91,11 +91,11 @@ bot.onText(/\/start/, (msg) => {
         'Welcome to MoodMovie Bot! 🎬\n\n' +
         'Tell me your mood, and I\'ll suggest some movies and TV shows that match your feeling!\n\n' +
         'Available moods:\n' +
-        '😊 happy\n' +
+        '😊 funny\n' +
         '😢 sad\n' +
-        '🤩 excited\n' +
-        '😨 scared\n' +
-        '😌 relaxed\n' +
+        '🤩 action\n' +
+        '😨 horror\n' +
+        '🎨 cartoon\n' +
         '❤️ romantic';
 
     bot.sendMessage(chatId, welcomeMessage);
@@ -108,13 +108,13 @@ bot.onText(/\/help/, (msg) => {
         '1. Type a mood followed by language:\n' +
         '   Format: <mood> <language>\n' +
         '   Example: romantic hindi\n' +
-        '   Example: happy french\n\n' +
+        '   Example: funny french\n\n' +
         'Available moods:\n' +
-        '   - happy\n' +
+        '   - funny\n' +
         '   - sad\n' +
-        '   - excited\n' +
-        '   - scared\n' +
-        '   - relaxed\n' +
+        '   - action\n' +
+        '   - horror\n' +
+        '   - cartoon\n' +
         '   - romantic\n\n' +
         'Supported languages:\n' +
         '   - English (default)\n' +
@@ -249,13 +249,13 @@ async function sendRecommendations(chatId, mood, languageName, page) {
         const errorMessage = 'Please enter a valid mood and language:\n\n' +
             'Format: <mood> <language>\n' +
             'Example: romantic hindi\n' +
-            'Example: happy french\n\n' +
+            'Example: funny french\n\n' +
             'Available moods:\n' +
-            '😊 happy\n' +
+            '😊 funny\n' +
             '😢 sad\n' +
-            '🤩 excited\n' +
-            '😨 scared\n' +
-            '😌 relaxed\n' +
+            '🤩 action\n' +
+            '😨 horror\n' +
+            '🎨 cartoon\n' +
             '❤️ romantic\n\n' +
             'Supported languages:\n' +
             '- English\n' +
@@ -288,6 +288,7 @@ bot.on('callback_query', async (query) => {
 
 // Log that bot is running
 console.log('MoodMovie Bot is running...');
+
 
 
 
